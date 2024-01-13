@@ -29,7 +29,7 @@ app.add_middleware(
 )
 
 def get_washer_state():
-    token = "UKFWNkjQQeweglKgINKSUMy8A7K93hDQtfpiAg43SWetazcGIvoktdDo6vaeaILIPYgBMHd4kQGNK1be9hc3Ew=="
+    token = os.getenv("INFLUXDB_TOKEN")
     org = "docker"
     bucket = "home_assistant"
     client = InfluxDBClient(url="http://influx.pash.home/", token=token)
