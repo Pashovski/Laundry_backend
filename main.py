@@ -71,10 +71,11 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
         # Clean up resources, if necessary
         print(f"WebSocket connection for client {client_id} closed")
 
-@app.get("/send/{client_id}/status/{status}")
-async def send_message(client_id: str, status:str):
+@app.get("/send-status/{status}")
+async def send_message(status:str):
     print(clients)
-    if client_id in clients:
-        await clients[client_id].send_text(status)
+    if len(clients) > 0:
+        for client_id in clients:
+            await clients[client_id].send_text(status)
     else:
         return {"message": "WebSocket connection not established"}
