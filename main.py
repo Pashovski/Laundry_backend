@@ -1,14 +1,15 @@
-from typing import Union
-
 import logging
+import os
+from datetime import datetime
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
+
 
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
+from typing import Union
 
 app = FastAPI()
 
