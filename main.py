@@ -62,7 +62,12 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
         while True:
             data = await websocket.receive_text()
             # Your logic for handling incoming messages
-            await websocket.send_text(output)
+            logging.info(data)
+            logging.info(clients)
+            if data == "ping":
+                await websocket.send_text("pong")
+            else:
+                await websocket.send_text(output)
     except WebSocketDisconnect:
         # Handle disconnection, remove the client from the dictionary, etc.
         print(f"WebSocket client {client_id} disconnected")
